@@ -42,7 +42,7 @@ PATH_TO_LOG = "config/log.pickle"
 
 with open(PATH_TO_SECRETS) as f:
     secrets = json.load(f)
-TOKEN = secrets['token']
+TOKEN = secrets['test_bot']
 bot_client = interactions.Client(TOKEN)
 def default_point():
     return 0
@@ -68,14 +68,9 @@ adminChannelID = ADMIN_CHANNEL
 announcement_channel = ANNOUNCEMENT_CHANNEL
 guilds_and_admin_roles = {}
 top_5 = []
-with open(PATH_TO_SERVERS_AND_ROLES) as f:
-    servers_and_roles = json.load(f)
 
 #for server in servers_and_roles['servers']:
 #    guilds_and_admin_roles[server['id']] = [create_permission(x['id'], SlashCommandPermissionType.ROLE, True) for x in server['roles']]
-
-with open(PATH_TO_SHOP) as f:
-    shop_info = json.load(f)
 '''
 Prints Ready! when Discord client is connected
 '''
@@ -416,9 +411,6 @@ async def expired():
         with open(PATH_TO_LOG, "wb") as f:
             pickle.dump(log, f, protocol=pickle.HIGHEST_PROTOCOL)
 
-with open(PATH_TO_SECRETS) as f:
-    secrets = json.load(f)
-TOKEN = secrets['token']
 loop = asyncio.get_event_loop()
 asyncio.ensure_future(expired())
 asyncio.ensure_future(bot_client.start())
